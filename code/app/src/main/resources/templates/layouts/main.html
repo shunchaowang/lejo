@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta name="description" content="Spring Boot, Spring Security and Thymeleaf" />
+    <meta name="_csrf_parameter" th:content="_csrf" />
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <!-- default header name is X-CSRF-TOKEN -->
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <meta charset="UTF-8"/>
+    <title>Smart Boot Web Application</title>
+
+    <link rel="stylesheet" href="../../static/vendors/bootstrap/css/bootstrap.css"
+          th:href="@{/vendors/bootstrap/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="../../static/vendors/bootstrap/css/bootstrap-theme.css"
+          th:href="@{/vendors/bootstrap/css/bootstrap-theme.min.css}"/>
+
+    <link rel="stylesheet" href="../../static/vendors/jquery-ui/jquery-ui.css"
+          th:href="@{/vendors/jquery-ui/jquery-ui.min.css}"/>
+
+    <link rel="stylesheet" href="../../static/vendors/DataTables/datatables.css"
+          th:href="@{/vendors/DataTables/datatables.css}"/>
+
+    <link rel="stylesheet" href="../../static/vendors/DataTables/Buttons-1.4.2/css/buttons.dataTables.css"
+        th:href="@{/vendors/DataTables/Buttons-1.4.2/css/buttons.dataTables.min.css}"/>
+
+    <link rel="stylesheet" href="../../static/vendors/DataTables/Select-1.2.3/css/select.dataTables.css"
+        th:href="@{/vendors/DataTables/Select-1.2.3/css/select.dataTables.min.css}"/>
+
+    <link rel="stylesheet" href="../../static/vendors/DataTables/Responsive-2.2.0/css/responsive.bootstrap.css"
+        th:href="@{/vendors/DataTables/Responsive-2.2.0/css/responsive.bootstrap.min.css}"/>
+
+    <link rel="stylesheet" href="../../static/css/app.css" th:href="@{/css/app.css}"/>
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var tableLangUrl = /*[[@{/table/lang}]]*/ '/table/lang';
+
+        /*]]>*/
+    </script>
+</head>
+
+<body class="container">
+
+<div th:replace="layouts/_header :: navbar"></div>
+
+<div layout:fragment="content">
+    Page content goes here
+</div>
+
+<div th:replace="layouts/_footer :: footer"></div>
+
+
+<script src="../../static/vendors/jquery/jquery.js"
+        th:src="@{/vendors/jquery/jquery.min.js}"></script>
+
+<script src="../../static/vendors/bootstrap/js/bootstrap.js"
+        th:src="@{/vendors/bootstrap/js/bootstrap.min.js}"></script>
+<script src="../../static/vendors/jquery/jquery.validate.js"
+        th:src="@{/vendors/jquery/jquery.validate.min.js}"></script>
+
+<script src="../../static/vendors/jquery-ui/jquery-ui.js"
+        th:src="@{/vendors/jquery-ui/jquery-ui.min.js}"></script>
+
+<script src="../../static/vendors/URI.js"
+        th:src="@{/vendors/URI.min.js}"></script>
+
+<script src="../../static/vendors/DataTables/datatables.js"
+        th:src="@{/vendors/DataTables/datatables.min.js}"></script>
+
+<script src="../../static/vendors/DataTables/Buttons-1.4.2/js/dataTables.buttons.js"
+    th:src="@{/vendors/DataTables/Buttons-1.4.2/js/dataTables.buttons.min.js}"></script>
+
+<script src="../../static/vendors/DataTables/Select-1.2.3/js/dataTables.select.js"
+    th:src="@{/vendors/DataTables/Select-1.2.3/js/dataTables.select.min.js}"></script>
+
+<script src="../../static/vendors/DataTables/Responsive-2.2.0/js/dataTables.responsive.js"
+    th:src="@{/vendors/DataTables/Responsive-2.2.0/js/dataTables.responsive.min.js}"></script>
+
+<script src="../../static/js/app.js" th:src="@{/js/app.js}"></script>
+
+<th:block layout:fragment="scripts"></th:block>
+</body>
+</html>

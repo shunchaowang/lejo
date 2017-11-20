@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title th:text="#{home.label}">Home</title>
+    <link rel="stylesheet" href="/css/home/index.css"/>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <h1>Only administrator can see role below.</h1>
+        <!-- use this if going with role based authorization -->
+        <span sec:authorize="hasAuthority('ROLE_ADMIN')">
+            <span sec:authentication="principal.authorities">principal</span>
+        </span>
+    </div>
+</div>
+<th:block layout:fragment="scripts">
+    <script src="/js/home/index.js"></script>
+</th:block>
+</body>
+</html>

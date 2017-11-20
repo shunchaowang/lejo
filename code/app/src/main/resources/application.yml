@@ -1,0 +1,50 @@
+# dev for development, prod for production, default to run with H2 database
+spring:
+  profiles:
+    active: default
+
+logging:
+  level:
+    ROOT: ERROR
+    me.lejo.app: DEBUG
+    me.lejo.core: DEBUG
+---
+spring:
+  profiles: dev
+  datasource:
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/lejo?useSSL=false
+    username: root
+    password:
+    driver-class-name: com.mysql.jdbc.Driver
+    tomcat: # keep connection alive
+      test-on-borrow: true
+      validation-query: SELECT 1
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none # create database schema, can be create, create-drop, update, none (must be on production)
+  thymeleaf:
+    cache: false
+server:
+  port: 8080
+logging:
+  level:
+    ROOT: ERROR
+    me.lejo.app: DEBUG
+    me.lejo.core: DEBUG
+    org.springframework: DEBUG
+    org.springframework.data: TRACE
+    org.springframework.data.domain: TRACE
+    org.springframework.data.jpa.domain: TRACE
+---
+spring:
+  profiles: prod
+  datasource:
+    jndi-name: [jndi-name]
+logging:
+  level:
+    ROOT: ERROR
+    me.lejo.app: DEBUG
+    me.lejo.core: DEBUG

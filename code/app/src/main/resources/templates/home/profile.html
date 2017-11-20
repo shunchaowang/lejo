@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title th:text="#{user.profile.label}">Profile</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <i class="glyphicon glyphicon-home"></i>
+                <span th:text="#{home.label}">Home</span>
+            </li>
+            <li class="active">
+                <i class="glyphicon glyphicon-wrench"></i>
+                <span th:text="#{user.profile.label}">Profile</span>
+            </li>
+        </ol>
+    </div>
+    <div class="row">
+        <div class="col-sm-8">
+            <form action="#" method="post" class="form-horizontal" id="edit-user-form"
+                  th:action="@{/home/profile}" th:object="${profileCommand}">
+                <input id="id" type="hidden" value="${profileCommand.id}" th:field="*{id}"/>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="username">
+                        <span th:text="#{username.label}">Username</span>
+                        <span class="required-indicator">*</span>
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input size="80" id="username" class="text" value="${profileCommand.username}"
+                               th:field="*{username}"
+                               th:class="${#fields.hasErrors('username')} ? fieldError"/>
+                        <ul>
+                            <li th:each="err: ${#fields.errors('username')}" th:text="${err}">Error</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- first name -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="firstName">
+                        <span th:text="#{firstName.label}">First Name</span>
+                        <span class="required-indicator">*</span>
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input size="80" id="firstName" class="text" required="" value="${profileCommand.firstName}"
+                               th:field="*{firstName}"
+                               th:class="${#fields.hasErrors('firstName')} ? fieldError"/>
+                        <ul>
+                            <li th:each="err: ${#fields.errors('firstName')}" th:text="${err}">Error</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- last name -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="lastName">
+                        <span th:text="#{lastName.label}">Last Name</span>
+                        <span class="required-indicator">*</span>
+                    </label>
+
+                    <div class="col-sm-4">
+                        <input size="80" id="lastName" class="text" value="${profileCommand.lastName}" required=""
+                               th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')} ? fieldError"/>
+                        <ul>
+                            <li th:each="err: ${#fields.errors('lastName')}" th:text="${err}">Error</li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="description">
+                        <span th:text="#{description.label}">Description</span>
+                    </label>
+
+                    <div class="col-sm-4">
+                        <textarea cols="100" rows="5" id="description" value="${profileCommand.remark}"
+                                  th:field="*{description}"></textarea>
+                    </div>
+                </div>
+                <!-- buttons -->
+                <div class='form-group'>
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <button class='btn btn-default' id='create-button' type="submit">
+                            <span th:text="#{action.save.label}">Save</span>
+                        </button>
+                    </div>
+                    <div class="col-sm-2">
+                        <a href="#" th:href="@{/}">
+                            <button type="button" class="btn btn-default">
+                                <span th:text="#{action.return.label}">Return</span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<th:block layout:fragment="scripts">
+    <script src="/js/home/profile.js"></script>
+</th:block>
+</body>
+</html>

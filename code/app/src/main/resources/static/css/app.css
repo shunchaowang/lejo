@@ -1,0 +1,23 @@
+.fieldError {
+    background-color: yellow;
+}
+
+/*  ---------------------------------
+    Layout
+    --------------------------------- */
+body {
+    /*padding-top: 55px;*/
+    padding-bottom: 55px;
+}
+
+#footer {
+    height: 33px;
+    /* color: #eee; */
+    font-size: 16px;
+    text-align: center;
+    padding-top: 8px;
+}
+
+.highlight {
+    background-color: PaleGreen !important;
+}

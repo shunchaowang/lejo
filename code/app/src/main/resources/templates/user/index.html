@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layouts/main">
+<head>
+    <title th:with="entity=#{user.label}" th:text="#{manage.label(${entity})}">User Management</title>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+
+        var listUserUrl = /*[[@{/user/list}]]*/ '/user/list';
+
+        /*]]>*/
+    </script>
+</head>
+<body th:with="entity=#{user.label}">
+<div layout:fragment="content">
+    <div class="row">
+        <ol class="breadcrumb">
+            <li>
+                <i class="glyphicon glyphicon-home"></i>
+                <span th:text="#{home.label}">Home</span>
+            </li>
+            <li>
+                <i class="glyphicon glyphicon-list"></i>
+                <span th:text="#{manage.label(${entity})}">User Management</span>
+            </li>
+            <li class="active">
+                <i class="glyphicon glyphicon-list"></i>
+                <span th:text="#{index.label(${entity})}">User List</span>
+            </li>
+        </ol>
+    </div>
+    <div id="notification"></div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-bordered" id="user-table">
+                <thead>
+                <tr>
+                    <th><span th:text="#{id.label}">Id</span></th>
+                    <th><span th:text="#{username.label}">Username</span></th>
+                    <th><span th:text="#{firstName.label}">First Name</span></th>
+                    <th><span th:text="#{lastName.label}">Last Name</span></th>
+                    <th><span th:text="#{description.label}">description</span></th>
+                    <th><span th:text="#{dateCreated.label}">Created Time</span></th>
+                    <th><span th:text="#{lastUpdated.label}">Updated Time</span></th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <!--create/edit user dialog-->
+    <div id="user-dialog" style="display:none;">
+        <form action="/user/save" method="POST" class="form-horizontal" id="user-form"
+              th:action="@{/rest/user/save}">
+            <input type="hidden" id="id"/>
+            <div class="input-group">
+                <label for="username">
+                    <span th:text="#{username.label}">Username</span>
+                    <span class="required-indicator">*</span>
+                </label>
+                <input size="28" id="username" class="form-control" required=""
+                       placeholder="Username"/>
+            </div>
+            <div class="input-group">
+                <label for="firstName">
+                    <span th:text="#{firstName.label}">First Name</span>
+                    <span class="required-indicator">*</span>
+                </label>
+                <input size="32" id="firstName" class="form-control" required="" placeholder="First Name"/>
+            </div>
+            <div class="input-group">
+                <label for="lastName">
+                    <span th:text="#{lastName.label}">Last Name</span>
+                    <span class="required-indicator">*</span>
+                </label>
+                <input size="32" id="lastName" class="form-control" required="" placeholder="Last Name"/>
+            </div>
+
+            <div class="input-group">
+                <label for="role">
+                    <span th:text="#{role.label}">Role</span>
+                    <span class="required-indicator">*</span>
+                </label>
+                <ul id="role">
+                    <li th:each="role: ${roles}">
+                        <input type="checkbox" th:value="${role.id}"/>
+                        <label><span th:text="#{__${role.name}__.label}">Role</span></label>
+                        <!--<label th:for="${#ids.prev('roles')}">${role.name}</label>-->
+                    </li>
+                </ul>
+            </div>
+
+            <div class="input-group">
+                <label for="description">
+                    <span th:text="#{description.label}">Description</span>
+                </label>
+                <textarea cols="50" rows="5" id="description" class="form-control"></textarea>
+            </div>
+            <ul id="errors">
+
+            </ul>
+        </form>
+    </div> <!--end of user-dialog-->
+</div> <!--end of content-->
+
+<th:block layout:fragment="scripts">
+    <script th:src="@{/js/user/index.js}"></script>
+</th:block>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head></head>
+<body>
+<div class="row" th:fragment="navbar" sec:authorize="isAuthenticated()">
+    <!-- navbar -->
+    <nav class="navbar navbar-default navbar-static-top"> <!--navbar-fixed-top makes navbar cover the content-->
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" th:href="@{/}">
+                <!--<img alt="Brand" src="">-->
+                <span th:text="#{application.name}">
+                            Smart Start
+                        </span>
+            </a>
+        </div> <!-- end of navbar header -->
+
+
+        <!-- use this if going with permission based authorization -->
+        <div th:with="menus=${#authentication.principal.menus}" th:remove="tag">
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                            <span th:each="menu: ${menus}" th:remove="tag">
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                                       aria-expanded="false">
+                                        <span th:text="#{menu.__${menu.name}__.label}">Menu</span>
+                                        <span class="caret"></span>
+                                    </a>
+                                    <ul class="dropdown-menu" role="menu">
+                                        <span th:each="subMenu: ${menu.subMenus}" th:remove="tag">
+                                            <li>
+                                                <a href="#" th:href="@{/__${subMenu.target}__}">
+                                                    <span th:text="#{subMenu.__${subMenu.name}__.label}">Submenu</span>
+                                                </a>
+                                            </li>
+                                        </span>
+                                    </ul> <!-- end of dropdown-menu -->
+                                </li> <!-- end of dropdown -->
+                            </span> <!-- end of th:each -->
+                </ul> <!-- end of navbar-nav -->
+
+                <ul class="nav navbar-nav navbar-right">
+                    <div style="margin-right: 20px; margin-top: 10px">
+                        <span th:text="#{lang.change}">Language</span>:
+                        <select id="locales">
+                            <option value=""></option>
+                            <option value="en" th:text="#{lang.eng}"></option>
+                            <option value="zh_cn" th:text="#{lang.zh_cn}"></option>
+                        </select>
+                    </div>
+                    <div class="dropdown">
+                        <a class="dropdown-toggle" role="button" id="dropdownMenuUser"
+                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span sec:authentication="name">User</span>
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                            <li>
+                                <form action="#" th:action="@{/logout}" method="post">
+                                    <button type="submit" class="btn btn-link" role="link">
+                                        <span th:text="#{user.logout.label}">Log Out</span>
+                                    </button>
+                                </form>
+                            </li>
+                            <li>
+                                <a href="#" th:href="@{/home/password}">
+                                    <span th:text="#{user.change.password.label}">Change Password</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#" th:href="@{/home/profile}">
+                                    <span th:text="#{user.profile.label}">Profile</span>
+                                </a>
+                            </li>
+                        </ul> <!-- endo of dropdownMenuUer -->
+                    </div> <!--end of dropdown-->
+                </ul> <!-- end of navbar-right -->
+            </div><!-- end of navbar-collapse -->
+        </div> <!-- end of th:with -->
+    </nav> <!-- end of nav -->
+</div>
+<!-- end header fragment -->
+</body>
+</html>
