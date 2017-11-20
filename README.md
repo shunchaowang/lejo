@@ -1,2 +1,2 @@
 # lejo
-Thyme<em> `le` af <em> <em> `j` <em> Springb <em> `o` <em> ot.
+Thyme<em>`le`af<em> with <em>`j`<em>ava and Springb<em>`o`<em>ot.
