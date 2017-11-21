@@ -1,7 +1,7 @@
 # dev for development, prod for production, default to run with H2 database
 spring:
   profiles:
-    active: default
+    active: dev
 
 logging:
   level:
@@ -34,10 +34,10 @@ logging:
     ROOT: ERROR
     me.lejo.app: DEBUG
     me.lejo.core: DEBUG
-    org.springframework: DEBUG
-    org.springframework.data: TRACE
-    org.springframework.data.domain: TRACE
-    org.springframework.data.jpa.domain: TRACE
+#    org.springframework: DEBUG
+#    org.springframework.data: TRACE
+#    org.springframework.data.domain: TRACE
+#    org.springframework.data.jpa.domain: TRACE
 ---
 spring:
   profiles: prod

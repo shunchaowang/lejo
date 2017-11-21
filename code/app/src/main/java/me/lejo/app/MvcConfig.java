@@ -66,7 +66,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
      */
     @Override
     public Validator getValidator() {
-        return validatorFactoryBean();
+        return validator();
     }
 
     //@Bean
@@ -84,7 +84,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return source;
     }
 
-    private LocalValidatorFactoryBean validatorFactoryBean() {
+    private LocalValidatorFactoryBean validator() {
         LocalValidatorFactoryBean bean = new LocalValidatorFactoryBean();
         bean.setValidationMessageSource(validationMessageSource());
         return bean;

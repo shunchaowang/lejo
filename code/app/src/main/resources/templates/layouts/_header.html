@@ -25,7 +25,7 @@
 
 
         <!-- use this if going with permission based authorization -->
-        <div th:with="menus=${#authentication.principal.menus}" th:remove="tag">
+        <div th:with="menus=${#authentication.principal.getMenus()}" th:remove="tag">
 
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-collapse">
@@ -39,7 +39,7 @@
                                         <span class="caret"></span>
                                     </a>
                                     <ul class="dropdown-menu" role="menu">
-                                        <span th:each="subMenu: ${menu.subMenus}" th:remove="tag">
+                                        <span th:each="subMenu: ${menu.getSubMenus()}" th:remove="tag">
                                             <li>
                                                 <a href="#" th:href="@{/__${subMenu.target}__}">
                                                     <span th:text="#{subMenu.__${subMenu.name}__.label}">Submenu</span>
