@@ -29,18 +29,14 @@ import java.util.Locale;
 public class HomeController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
-
-    @Autowired
-    private UserRepository userRepository;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @Autowired
-    private LocaleResolver localeResolver;
-
     @Autowired
     MessageSource messageSource;
+    @Autowired
+    private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    @Autowired
+    private LocaleResolver localeResolver;
 
     @GetMapping({"/home", "/index", "/"})
     String home() {
@@ -62,7 +58,7 @@ public class HomeController {
      */
     @GetMapping("/home/profile")
     String profile(Principal principal, Model model) {
-        UserDetailsImpl userDetails = (UserDetailsImpl)((Authentication)principal).getPrincipal();
+        UserDetailsImpl userDetails = (UserDetailsImpl) ((Authentication) principal).getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername());
         //User user = userRepository.findByUsername(principal.getName());
         model.addAttribute("profileCommand", new ProfileCommand(user));

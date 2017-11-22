@@ -28,13 +28,12 @@ import java.util.Date;
 public class RestUserController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RestUserController.class);
-
+    @Autowired
+    BCryptPasswordEncoder passwordEncoder;
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private RoleRepository roleRepository;
-    @Autowired
-    BCryptPasswordEncoder passwordEncoder;
 
     @PostMapping("/create")
     public RestResponse create(@RequestBody @Valid UserCommand userCommand, BindingResult bindingResult) {

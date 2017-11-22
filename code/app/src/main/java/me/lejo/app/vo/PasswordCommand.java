@@ -16,16 +16,16 @@ public class PasswordCommand {
     @NotEmpty
     private String confirmPassword;
 
-    @AssertTrue(message = "{PasswordCommand.isPasswordConfirmed.message}")
-    public boolean isValid() {
-        return StringUtils.equals(password, confirmPassword);
-    }
-
     public PasswordCommand(User user) {
         id = user.getId();
     }
 
     public PasswordCommand() {
+    }
+
+    @AssertTrue(message = "{PasswordCommand.isPasswordConfirmed.message}")
+    public boolean isValid() {
+        return StringUtils.equals(password, confirmPassword);
     }
 
     public long getId() {

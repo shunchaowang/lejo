@@ -27,8 +27,8 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
     public LocaleResolver localeResolver() {
         SessionLocaleResolver localeResolver = new SessionLocaleResolver();
         // localeResolver.setDefaultLocale(new Locale("zh", "cn")); // China, same with Locale China
-        localeResolver.setDefaultLocale(Locale.CHINA);
-        // localeResolver.setDefaultLocale(Locale.US); // US
+        localeResolver.setDefaultLocale(Locale.CHINA); // zh_CN
+//         localeResolver.setDefaultLocale(Locale.ENGLISH); // en
         return localeResolver;
     }
 
@@ -69,7 +69,11 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         return validator();
     }
 
-    //@Bean
+    /**
+     * add a lang interceptor to change the locale
+     *
+     * @return LocaleChangeInterceptor
+     */
     private LocaleChangeInterceptor localeChangeInterceptor() {
         LocaleChangeInterceptor interceptor = new LocaleChangeInterceptor();
         interceptor.setParamName("lang");
