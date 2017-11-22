@@ -86,7 +86,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // allow static assets go through
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/js/**", "/css/**", "/images/**", "/vendors/**");
+                .antMatchers("/js/**", "/css/**", "/images/**", "/vendors/**");
     }
 
     /**

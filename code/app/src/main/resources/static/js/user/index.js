@@ -30,7 +30,7 @@
 
             $.ajax({
                 type: 'post',
-                url: '/rest/user/create',
+                url: createUserUrl,
                 headers: headers,
                 contentType: 'application/json',
                 dataType: 'json',
@@ -84,7 +84,7 @@
 
             $.ajax({
                 type: 'put',
-                url: '/rest/user/update',
+                url: updateUserUrl,
                 headers: headers,
                 contentType: 'application/json',
                 dataType: 'json',
@@ -125,7 +125,7 @@
 
             $.ajax({
                 type: 'delete',
-                url: '/rest/user/delete/' + id,
+                url: deleteUserUrl + '/' + id,
                 headers: headers,
                 dataType: 'json',
                 success: function (result) {

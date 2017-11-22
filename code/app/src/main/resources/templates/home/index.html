@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
       layout:decorator="layouts/main">
 <head>
     <title th:text="#{home.label}">Home</title>
-    <link rel="stylesheet" href="/css/home/index.css"/>
+    <link rel="stylesheet" href="/css/home/index.css" th:href="@{/css/home/index.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
@@ -18,7 +18,7 @@
     </div>
 </div>
 <th:block layout:fragment="scripts">
-    <script src="/js/home/index.js"></script>
+    <script src="/js/home/index.js" th:src="@{/js/home/index.js}"></script>
 </th:block>
 </body>
 </html>
