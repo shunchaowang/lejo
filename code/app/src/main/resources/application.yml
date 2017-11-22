@@ -1,7 +1,7 @@
 # dev for development, prod for production, default to run with H2 database
 spring:
   profiles:
-    active: dev
+    active: default
 
 logging:
   level:

@@ -36,7 +36,7 @@
                 dataType: 'json',
                 data: JSON.stringify(formData),
                 success: function (result) {
-                    if (result.status == 'successful') {
+                    if (result.status == 'success') {
                         dialog.dialog('close');
                         // set highlight value to be the id of created user
                         highlight = result.data.id;
@@ -90,7 +90,7 @@
                 dataType: 'json',
                 data: JSON.stringify(formData),
                 success: function (result) {
-                    if (result.status == 'successful') {
+                    if (result.status == 'success') {
                         dialog.dialog('close');
                         // set highlight value to be the id of created user
                         highlight = result.data.id;

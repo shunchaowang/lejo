@@ -103,7 +103,7 @@ public class UserController {
         result.setRecordsTotal(page.getTotalElements());
         result.setRecordsFiltered(userRepository.count(specification));
 
-        LOGGER.debug("datatable result: " + JsonUtil.toJson(result));
+        LOGGER.debug("Gson result: " + JsonUtil.toJson(result));
 
         return JsonUtil.toJson(result);
     }
