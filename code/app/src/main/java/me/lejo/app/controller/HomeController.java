@@ -19,7 +19,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.LocaleResolver;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -35,16 +34,14 @@ public class HomeController {
     private UserRepository userRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Autowired
-    private LocaleResolver localeResolver;
 
     @GetMapping({"/home", "/index", "/"})
-    String home() {
+    public String home() {
         return "home/index";
     }
 
     @GetMapping("/login")
-    String login() {
+    public String login() {
         return "login";
     }
 
@@ -57,7 +54,7 @@ public class HomeController {
      * @return
      */
     @GetMapping("/home/profile")
-    String profile(Principal principal, Model model) {
+    public String profile(Principal principal, Model model) {
         UserDetailsImpl userDetails = (UserDetailsImpl) ((Authentication) principal).getPrincipal();
         User user = userRepository.findByUsername(userDetails.getUsername());
         //User user = userRepository.findByUsername(principal.getName());
@@ -66,7 +63,7 @@ public class HomeController {
     }
 
     @PostMapping("/home/profile")
-    String saveProfile(@Valid final ProfileCommand profileCommand, final BindingResult bindingResult) {
+    public String saveProfile(@Valid final ProfileCommand profileCommand, final BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "home/profile";
         }
@@ -82,7 +79,7 @@ public class HomeController {
     }
 
     @GetMapping("/home/password")
-    String password(Principal principal, Model model) {
+    public String password(Principal principal, Model model) {
         String username = principal.getName();
         User user = userRepository.findByUsername(username);
         model.addAttribute("passwordCommand", new PasswordCommand(user));
@@ -90,7 +87,7 @@ public class HomeController {
     }
 
     @PostMapping("/home/password")
-    String savePassword(@Valid final PasswordCommand passwordCommand, BindingResult bindingResult) {
+    public String savePassword(@Valid final PasswordCommand passwordCommand, BindingResult bindingResult) {
 
         User user = userRepository.getOne(passwordCommand.getId());
 
@@ -111,7 +108,7 @@ public class HomeController {
 
     @GetMapping(value = "/table/lang", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    String dataTableLang() {
+    public String dataTableLang() {
 
         Locale locale = LocaleContextHolder.getLocale();
 
@@ -125,7 +122,7 @@ public class HomeController {
     }
 
     @GetMapping("/403")
-    String error403() {
+    public String error403() {
         return "403";
     }
 }

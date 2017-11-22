@@ -46,7 +46,7 @@ public class RestUserController {
     }
 
     @PutMapping("/update")
-    RestResponse update(@Valid @RequestBody UserCommand userCommand, BindingResult bindingResult) {
+    public RestResponse update(@Valid @RequestBody UserCommand userCommand, BindingResult bindingResult) {
 
         if (bindingResult.hasErrors()) {
             return new RestResponse("error", bindingResult.getAllErrors());
@@ -57,7 +57,7 @@ public class RestUserController {
     }
 
     @DeleteMapping("/delete/{id}")
-    RestResponse delete(@PathVariable long id) {
+    public RestResponse delete(@PathVariable long id) {
         User user = userRepository.getOne(id);
         userRepository.delete(id);
         return new RestResponse("success", user.getUsername());

@@ -52,7 +52,7 @@ public class UserController {
     @PreAuthorize("hasPermission('', 'manageUser')")
     // permission based
     @GetMapping("/index")
-    String index(Model model) {
+    public String index(Model model) {
         List<RoleCommand> commands = new ArrayList<>();
         for (Role role : roleRepository.findAll()) {
             commands.add(new RoleCommand(role));
@@ -65,7 +65,7 @@ public class UserController {
     // permission based
     @GetMapping(value = "list", produces = "application/json;charset=UTF-8")
     @ResponseBody
-    String list(HttpServletRequest request) {
+    public String list(HttpServletRequest request) {
 
         DataTableParams params = new DataTableParams(request);
 
