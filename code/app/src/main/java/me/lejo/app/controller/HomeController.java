@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -35,6 +36,7 @@ public class HomeController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+//    @PreAuthorize("isAuthenticated()")
     @GetMapping({"/home", "/index", "/"})
     public String home() {
         return "home/index";
@@ -106,10 +108,12 @@ public class HomeController {
         return "redirect:/home";
     }
 
+    @PreAuthorize("permitAll()")
     @GetMapping(value = "/table/lang", produces = "application/json;charset=UTF-8")
     @ResponseBody
     public String dataTableLang() {
 
+        LOGGER.debug("Loading language for table.");
         Locale locale = LocaleContextHolder.getLocale();
 
         if (locale.equals(Locale.CHINA)) {

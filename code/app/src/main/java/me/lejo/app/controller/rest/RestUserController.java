@@ -10,6 +10,7 @@ import me.lejo.core.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -35,6 +36,7 @@ public class RestUserController {
     @Autowired
     private RoleRepository roleRepository;
 
+    @PreAuthorize("hasPermission('', 'manageUser')")
     @PostMapping("/create")
     public RestResponse create(@RequestBody @Valid UserCommand userCommand, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -45,6 +47,7 @@ public class RestUserController {
         return new RestResponse("success", new UserCommand(user));
     }
 
+    @PreAuthorize("hasPermission('', 'manageUser')")
     @PutMapping("/update")
     public RestResponse update(@Valid @RequestBody UserCommand userCommand, BindingResult bindingResult) {
 
@@ -56,6 +59,7 @@ public class RestUserController {
         return new RestResponse("success", new UserCommand(user));
     }
 
+    @PreAuthorize("hasPermission('', 'manageUser')")
     @DeleteMapping("/delete/{id}")
     public RestResponse delete(@PathVariable long id) {
         User user = userRepository.getOne(id);

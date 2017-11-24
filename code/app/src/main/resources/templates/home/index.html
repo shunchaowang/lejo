@@ -5,7 +5,7 @@
       layout:decorator="layouts/main">
 <head>
     <title th:text="#{home.label}">Home</title>
-    <link rel="stylesheet" href="/css/home/index.css" th:href="@{/css/home/index.css}"/>
+    <link rel="stylesheet" href="../../static/css/home/index.css" th:href="@{/css/home/index.css}"/>
 </head>
 <body>
 <div layout:fragment="content">
@@ -18,7 +18,7 @@
     </div>
 </div>
 <th:block layout:fragment="scripts">
-    <script src="/js/home/index.js" th:src="@{/js/home/index.js}"></script>
+    <script src="../../static/js/home/index.js" th:src="@{/js/home/index.js}"></script>
 </th:block>
 </body>
 </html>
