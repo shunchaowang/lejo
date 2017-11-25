@@ -83,6 +83,8 @@ public class UserDetailsImpl implements UserDetails {
         menus.forEach(menu -> {
             Collections.sort(menu.getSubMenus());
         });
+
+        LOGGER.debug("Initialized user details successfully " + username);
     }
 
     /**
