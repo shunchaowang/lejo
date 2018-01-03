@@ -15,13 +15,13 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'war'
 apply plugin: 'idea'
 
-idea {
-    module {
-        inheritOutputDirs = false
-        outputDir = file("$buildDir/classes/main/")
-        testOutputDir = file("$buildDir/classes/test/")
-    }
-}
+//idea {
+//    module {
+//        inheritOutputDirs = false
+//        outputDir = file("$buildDir/classes/main/")
+//        testOutputDir = file("$buildDir/classes/test/")
+//    }
+//}
 
 group = 'me.lejo'
 version = '0.0.1-SNAPSHOT'
