@@ -1,0 +1,11 @@
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
+subprojects {
+    group = 'me.lejo'
+    version = '1.0.0'
+}
