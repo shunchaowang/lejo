@@ -1,21 +1,39 @@
-plugins {
-    id 'org.springframework.boot' version "2.2.1.RELEASE" apply false // prevent bootJar to be created
-    id 'java-library'
-}
-
-apply plugin: 'io.spring.dependency-management'
-// imports BOM to let spring resolve version for dependencies
-dependencyManagement {
-    imports {
-        mavenBom org.springframework.boot.gradle.plugin.SpringBootPlugin.BOM_COORDINATES
+buildscript {
+    ext {
+        springBootVersion = '1.5.8.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
 
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'idea'
+
+idea {
+    module {
+        inheritOutputDirs = false
+        outputDir = file("$buildDir/classes/main/")
+        testOutputDir = file("$buildDir/classes/test/")
+    }
+}
+
+group = 'me.lejo'
+version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
 
+repositories {
+    mavenCentral()
+}
+
+
 dependencies {
-    implementation('org.springframework.boot:spring-boot-starter-data-jpa')
-    runtimeOnly('com.h2database:h2')
-    runtimeOnly('mysql:mysql-connector-java')
-    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    compile('org.springframework.boot:spring-boot-starter-data-jpa')
+    runtime('com.h2database:h2')
+    runtime('mysql:mysql-connector-java')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
 }
